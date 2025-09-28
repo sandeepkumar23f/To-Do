@@ -1,60 +1,60 @@
-/* Container */
-.list-container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Page Title */
-.list-container h1 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  color: #333;
-}
-
-/* Task List */
 .task-list {
+  display: grid;
+  grid-template-columns: 50px 1fr 2fr 100px;
+  gap: 10px;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
 }
 
-/* Task Item */
-.task-item {
-  background: #fff;
-  margin-bottom: 15px;
-  padding: 18px 20px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-
-.task-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-}
-
-/* Task Title */
-.task-title {
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-  color: #222;
-}
-
-/* Task Description */
-.task-desc {
-  font-size: 0.95rem;
-  color: #555;
-}
-
-/* Empty State */
-.empty-message {
+/* Header cells */
+.list-header {
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #e9ecef;
   text-align: center;
-  font-size: 1rem;
-  color: #777;
-  margin-top: 40px;
+}
+
+/* Data cells */
+.list-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* Delete button */
+.delete-item {
+  width: 50%;
+  padding: 6px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+.delete-item:hover {
+  background-color: #c0392b;
+}
+
+
+.update-item {
+  width: 50%;
+  padding: 6px;
+  background-color: #3c45e7;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+
+}
+
+.update-item:hover {
+  background-color: #2bc055;
 }

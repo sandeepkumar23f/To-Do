@@ -1,6 +1,7 @@
 import express from "express";
 import { connection, collectionName } from "./dbconfig.js";
 import cors from 'cors'
+import { ObjectId } from "mongodb"
 const app = express();
 app.use(express.json()); 
 app.use(cors())
@@ -55,4 +56,70 @@ app.get("/tasks", async (req, res) => {
     }
 });
 
+app.get("/task/:id", async (req, res) => {
+    try {
+        const db = await connection();
+        const collection = db.collection(collectionName);
+        const id = req.params.id;
+        const tasks = await collection.findOne({_id: new ObjectId(id)});
+
+        res.status(200).json({ success: true, message: "Task fetched", tasks });
+    } catch (err) {
+        console.error("Error fetching tasks:", err.message);
+        res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+});
+
+// app.put("/update-task", async (req, res) => {
+//     try {
+//         const db = await connection();
+//         const collection = db.collection(collectionName);
+//         const {_id,...fields}=req.body;
+//         const update = {$set:fields}
+//         console.log(fields)
+//         const tasks = await collection.updateOne(
+//             {_id:new ObjectId(_id) },
+//             update)
+//         res.status(200).json({ success: true, message: "Task list fetched", tasks });
+//     } catch (err) {
+//         console.error("Error fetching tasks:", err.message);
+//         res.status(500).json({ success: false, message: "Server error", error: err.message });
+//     }
+// });
+
+app.put("/update-task", async (req, res) => {
+    try {
+        const db = await connection();
+        const collection = db.collection(collectionName);
+        const { _id, ...fields } = req.body;
+        const update = { $set: fields };
+
+        console.log(fields);
+
+        const tasks = await collection.updateOne(
+            { _id: new ObjectId(_id) },
+            update
+        );
+
+        res.status(200).json({ success: true, message: "Task updated", tasks });
+    } catch (err) {
+        console.error("Error updating task:", err.message);
+        res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+});
+
+
+app.delete("/delete/:id", async (req, res) => {
+    try {
+        const db = await connection();
+        const collection = db.collection(collectionName);
+        const id = req.params.id;
+        const tasks = await collection.deleteOne({_id: new ObjectId(id)});
+
+        res.status(200).json({ success: true, message: "Task deleted", tasks });
+    } catch (err) {
+        console.error("Error fetching tasks:", err.message);
+        res.status(500).json({ success: false, message: "Server error", error: err.message });
+    }
+});
 app.listen(5000, () => console.log("Server running on port 5000"));
