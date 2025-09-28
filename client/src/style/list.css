@@ -1,0 +1,60 @@
+/* Container */
+.list-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page Title */
+.list-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Task Item */
+.task-item {
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 18px 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Task Title */
+.task-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+/* Task Description */
+.task-desc {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Empty State */
+.empty-message {
+  text-align: center;
+  font-size: 1rem;
+  color: #777;
+  margin-top: 40px;
+}

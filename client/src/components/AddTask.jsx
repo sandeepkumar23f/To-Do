@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import '../style/addtask.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddTask() {
     const [taskData, setTaskData] = useState({ title: '', description: '' });
-
+    const navigate = useNavigate()
     const handleAddTask = async () => {
         try {
             const response = await fetch("http://localhost:5000/add-task", {
@@ -12,6 +13,7 @@ export default function AddTask() {
                 body: JSON.stringify(taskData),
             });
             const result = await response.json();
+            navigate('/')
             console.log(result);
             setTaskData({ title: '', description: '' });
         } catch (err) {

@@ -1,5 +1,5 @@
 import { useState , useEffect } from "react"
-
+import '../style/list.css'
 export default function List(){
     const [taskData,setTaskData]=useState([])
 
@@ -14,13 +14,21 @@ export default function List(){
         console.log(list)
     }
     return(
-        <>
-        <h1>List</h1>
-        <ul>
-            {taskData.map((task,index)=>(
-                <li key={index}>{task.title}: {task.description}</li>
-            ))}
+       <div className="list-container">
+      <h1>Tasks</h1>
+
+      {taskData.length === 0 ? (
+        <p className="empty-message">No tasks available. Add one!</p>
+      ) : (
+        <ul className="task-list">
+          {taskData.map((task, index) => (
+            <li key={index} className="task-item">
+              <div className="task-title">{task.title}</div>
+              <div className="task-desc">{task.description}</div>
+            </li>
+          ))}
         </ul>
-        </>
+      )}
+    </div>
     )
 }
